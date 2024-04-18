@@ -1,0 +1,110 @@
+\documentclass[a4paper,11pt,english]{article}
+\usepackage[verbose=true,a4paper]{geometry}
+\AtBeginDocument{
+  \newgeometry{
+    textheight=9in,
+    textwidth=6.5in,
+    top=1in,
+    headheight=14pt,
+    headsep=25pt,
+    footskip=30pt
+  }
+}
+\usepackage{amsmath,amssymb,amsfonts}%
+
+
+\title{Curriculum Vitae}
+
+\begin{document}
+
+\section{Flow variables and units (SI)}
+
+Flow variables and their units:
+\begin{enumerate}
+    \item Density $\rho$ is kg/m$^3$
+    \item Pressure $p$ is Pa (is N/m$^2$ is J/m$^3$)
+    \item Flow velocity $v$ is m/s
+    \item Total energy per unit volume $E=\rho e=\rho \varepsilon_{\mathrm{int}} + \rho v^2 / 2$ is J/m$^3$
+    \item Total specific energy $e$ is J/kg
+    \item Total specific internal energy $\varepsilon$ is J/kg
+    \item Mass of the constituent species $m$ is kg
+\end{enumerate}
+
+\section{Euler equations}
+For a two-dimensional flow of a single-species inviscid gas the compressible Euler equations governing such a flow are given by
+\begin{equation}
+    \frac{\partial}{\partial t}\mathbf{u} + \frac{\partial}{\partial x}\mathbf{f}_x + \frac{\partial}{\partial y}\mathbf{f}_y = 0.
+\end{equation}
+
+The vector of conservative variables  $\mathbf{u} \in \mathbb{R}^4$ is given by
+\begin{equation}
+     \mathbf{u} = \left(\rho, \rho v_x, \rho v_y, E \right)^{\mathrm{T}},
+\end{equation}
+
+The inviscid fluxes are given by
+\begin{equation}
+     \mathbf{f}_x = \left(\rho v_x, \rho v_x^2 + p, \rho v_x v_y, (E+p)v_x \right)^{\mathrm{T}},
+\end{equation}
+\begin{equation}
+     \mathbf{f}_y = \left(\rho v_y, \rho v_x v_y, \rho v_y^2 + p, (E+p)v_y \right)^{\mathrm{T}}.
+\end{equation}
+Instead of $E$ one can also write $\rho e$.
+
+Re-writing via scaled variables and reference quantities, we obtain
+\begin{equation}
+    \frac{\partial}{t_{ref}  \partial \hat{t}}\mathbf{u} + \frac{\partial}{L_{ref} \partial \hat{x}}\mathbf{f}_x + \frac{\partial}{L_{ref}\partial  \hat{y}}\mathbf{f}_y = 0,
+\end{equation}
+\begin{equation}
+     \mathbf{u} = \rho_{ref}\left( \hat{\rho},
+     v_{ref} \hat{\rho} \hat{v}_x,
+     v_{ref} \hat{\rho} \hat{v}_y,
+     p_{ref} / \rho_{ref} \hat{\rho}\hat{e} \right),
+\end{equation}
+\begin{equation}
+     \mathbf{f}_x = \left(\rho_{ref} v_{ref}  \hat{\rho} \hat{v}_x,
+     p_{ref} \hat{\rho} \hat{v}_x^2 + p_{ref}\hat{p},
+     p_{ref} \hat{\rho} \hat{v}_x \hat{v}_y,
+     v_{ref}  p_{ref}(\hat{\rho}\hat{e}+\hat{p})\hat{v}_x \right),
+\end{equation}
+\begin{equation}
+     \mathbf{f}_y = \left(\rho_{ref} v_{ref} \hat{\rho} \hat{v}_y,
+     p_{ref} \hat{\rho} \hat{v}_x \hat{v}_y,
+     p_{ref} \hat{\rho} \hat{v}_y^2 + p_{ref}\hat{p}, 
+     v_{ref} p_{ref}(\hat{\rho}\hat{e}+\hat{p})\hat{v}_y \right).
+\end{equation}
+
+Accounting for the fact that $t_{ref}=L_{ref}/v_{ref}$, we can write:
+\begin{equation}
+    \frac{\partial}{\partial \hat{t}}\hat{\mathbf{u}} + \frac{\partial}{\partial \hat{x}}\hat{\mathbf{f}}_x + \frac{\partial}{\partial  \hat{y}}\hat{\mathbf{f}}_y = 0,
+\end{equation}
+\begin{equation}
+     \mathbf{u} = \left(\hat{\rho},
+     \hat{\rho} \hat{v}_x,
+     \hat{\rho} \hat{v}_y,
+     \hat{\rho}\hat{e},
+     \right),
+\end{equation}
+\begin{equation}
+     \mathbf{f}_x = \left(\hat{\rho} \hat{v}_x,
+     \hat{\rho} \hat{v}_x^2 + \hat{p},
+     \hat{\rho} \hat{v}_x \hat{v}_y,
+     (\hat{\rho}\hat{e} + \hat{p})\hat{v}_x
+     \right),
+\end{equation}
+\begin{equation}
+     \mathbf{f}_y = \left(\hat{\rho} \hat{v}_y,
+     \hat{\rho} \hat{v}_x \hat{v}_y,
+     \hat{\rho} \hat{v}_y^2 + \hat{p}, 
+     (\hat{\rho}\hat{e}+\hat{p})\hat{v}_y
+     \right).
+\end{equation}
+So the scaled Euler equations are identical to the non-scaled ones, as all reference quantities cancel out.
+
+\subsection{Scaling of specific heats}
+We have (for a single-component flow) $T=T_{ref} \hat{T} = m_{ref} p_{ref} / \rho_{ref} / k \hat{T}$, $\hat{T} = \hat{p}/\rho_{ref}$ (since at $T=T_{ref}$ and $n=n_{ref}$ the flow density is $\rho_{ref}$ and the pressure is $p_{ref}$).
+Scaling of specific heats:
+\begin{equation}
+    c_v(T) = \frac{\partial \varepsilon}{\partial T} = \frac{p_{ref}}{\rho_{ref}T_{ref}}\frac{\partial \hat{\varepsilon}}{\partial \hat{T}}=c_{v,ref} \hat{c}_{v}.
+\end{equation}
+So $c_{v,ref}=p_{ref} / (\rho_{ref}T_{ref}) = k / m_{ref}$. Mayer's relation in scaled form then reads that $\hat{c}_p = \hat{c}_v + 1$.
+\end{document}
