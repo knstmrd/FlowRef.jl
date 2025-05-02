@@ -58,7 +58,7 @@ Re-writing via scaled variables and reference quantities, we obtain
      \mathbf{u} = \rho_{ref}\left( \hat{\rho},
      v_{ref} \hat{\rho} \hat{v}_x,
      v_{ref} \hat{\rho} \hat{v}_y,
-     p_{ref} / \rho_{ref} \hat{\rho}\hat{e} \right),
+     p_{ref} \hat{\rho}\hat{e} \right),
 \end{equation}
 \begin{equation}
      \mathbf{f}_x = \left(\rho_{ref} v_{ref}  \hat{\rho} \hat{v}_x,
@@ -109,5 +109,41 @@ Scaling of specific heats:
 So $c_{v,ref}=p_{ref} / (\rho_{ref}T_{ref}) = k / m_{ref}$. Mayer's relation in scaled form then reads that $\hat{c}_p = \hat{c}_v + 1$.
 
 \section{Navier--Stokes equations}
+Let us consider the (multi-temperature) Navier--Stokes equations in general form:
+\begin{equation}
+     \frac{d}{dt}\rho_s + \rho_s \nabla \cdot \mathbf{v} + \nabla \cdot (\rho_s \mathbf{V}_s) = 0,\quad s=1,\ldots,N_s
+\end{equation}
+
+\begin{equation}
+     \rho \frac{d}{dt}\mathbf{v} + \nabla \cdot \mathbf{P} = 0,
+\end{equation}
+
+\begin{equation}
+     \rho \frac{d}{dt}\mathbf{U} + \nabla \cdot \mathbf{q} + \mathbf{P} : \nabla \mathbf{v} = 0,
+\end{equation}
+\begin{equation}
+     \rho \frac{d}{dt}\mathbf{E^v_s} + \nabla \cdot \mathbf{q^v_s} = E_s \nabla \cdot (\rho_s \mathbf{V}_s).
+\end{equation}
+
+With scaling:
+\begin{equation}
+    \frac{\rho_{ref}}{t_{ref}} \frac{d}{d\hat{t}}\hat{\rho}_s + \frac{\rho_{ref} v_{ref}}{L_{ref}} \hat{\rho}_s \nabla_{\hat{\mathbf{x}}} \cdot \hat{\mathbf{v}} + \frac{\rho_{ref}v_{ref}}{L_ref}\nabla_{\hat{\mathbf{x}}} \cdot (\rho_s \hat{\mathbf{V}}_s) = 0,\quad s=1,\ldots,N_s
+\end{equation}
+
+\begin{equation}
+     \frac{\rho_{ref}v_{ref}}{t_{ref}} \hat{\rho} \frac{d}{d\hat{t}}\hat{\mathbf{v}} + \frac{p_{ref}}{L_{ref}}\nabla_{\hat{\mathbf{x}}} \cdot \hat{\mathbf{P}} = 0,
+\end{equation}
+
+\begin{equation}
+     \frac{p_{ref}}{t_{ref}} \hat{\rho} \frac{d}{d\hat{t}}\hat{\mathbf{U}} + \frac{q_{ref}}{L_{ref}} \nabla_{\hat{\mathbf{x}}} \cdot \hat{\mathbf{q}} + \frac{p_{ref}v_{ref}}{L_{ref}} \hat{\mathbf{P}} : \nabla_{\hat{\mathbf{x}}} \hat{\mathbf{v}} = 0,
+\end{equation}
+\begin{equation}
+     \frac{p_{ref}}{t_{ref}} \rho \frac{d}{dt}\mathbf{E^v_s} + \frac{q_{ref}}{L_{ref}} \nabla_{\hat{\mathbf{x}}} \cdot \mathbf{q^v_s} = E_s \nabla \cdot (\rho_s \mathbf{V}_s).
+\end{equation}
+
+So $q_{ref} = p_{ref}v_{ref}$.
+
+\section{Production terms}
+
 
 \end{document}
