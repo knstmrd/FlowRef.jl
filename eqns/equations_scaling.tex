@@ -122,12 +122,12 @@ Let us consider the (multi-temperature) Navier--Stokes equations in general form
      \rho \frac{d}{dt}\mathbf{U} + \nabla \cdot \mathbf{q} + \mathbf{P} : \nabla \mathbf{v} = 0,
 \end{equation}
 \begin{equation}
-     \rho \frac{d}{dt}\mathbf{E^v_s} + \nabla \cdot \mathbf{q^v_s} = E_s \nabla \cdot (\rho_s \mathbf{V}_s).
+     \rho \frac{d}{dt}\mathbf{e^v_s} + \nabla \cdot \mathbf{q^v_s} = e^v_s \nabla \cdot (\rho_s \mathbf{V}_s).
 \end{equation}
 
 With scaling:
 \begin{equation}
-    \frac{\rho_{ref}}{t_{ref}} \frac{d}{d\hat{t}}\hat{\rho}_s + \frac{\rho_{ref} v_{ref}}{L_{ref}} \hat{\rho}_s \nabla_{\hat{\mathbf{x}}} \cdot \hat{\mathbf{v}} + \frac{\rho_{ref}v_{ref}}{L_ref}\nabla_{\hat{\mathbf{x}}} \cdot (\rho_s \hat{\mathbf{V}}_s) = 0,\quad s=1,\ldots,N_s
+    \frac{\rho_{ref}}{t_{ref}} \frac{d}{d\hat{t}}\hat{\rho}_s + \frac{\rho_{ref} v_{ref}}{L_{ref}} \hat{\rho}_s \nabla_{\hat{\mathbf{x}}} \cdot \hat{\mathbf{v}} + \frac{\rho_{ref}v_{ref}}{L_{ref}}\nabla_{\hat{\mathbf{x}}} \cdot (\rho_s \hat{\mathbf{V}}_s) = 0,\quad s=1,\ldots,N_s
 \end{equation}
 
 \begin{equation}
@@ -138,10 +138,45 @@ With scaling:
      \frac{p_{ref}}{t_{ref}} \hat{\rho} \frac{d}{d\hat{t}}\hat{\mathbf{U}} + \frac{q_{ref}}{L_{ref}} \nabla_{\hat{\mathbf{x}}} \cdot \hat{\mathbf{q}} + \frac{p_{ref}v_{ref}}{L_{ref}} \hat{\mathbf{P}} : \nabla_{\hat{\mathbf{x}}} \hat{\mathbf{v}} = 0,
 \end{equation}
 \begin{equation}
-     \frac{p_{ref}}{t_{ref}} \rho \frac{d}{dt}\mathbf{E^v_s} + \frac{q_{ref}}{L_{ref}} \nabla_{\hat{\mathbf{x}}} \cdot \mathbf{q^v_s} = E_s \nabla \cdot (\rho_s \mathbf{V}_s).
+     \frac{p_{ref}}{t_{ref}} \frac{d}{dt} \hat{\rho} \hat{\mathbf{e}}^v_s + \frac{q_{ref}}{L_{ref}} \nabla_{\hat{\mathbf{x}}} \cdot \hat{\mathbf{q}}^v_s = p_{ref}v_{ref}\hat{e_s} \nabla \cdot (\rho_s \mathbf{V}_s).
 \end{equation}
 
-So $q_{ref} = p_{ref}v_{ref}$.
+So $q_{ref} = p_{ref}v_{ref}$. Since $v_{ref} = \sqrt{\frac{p_{ref}}{\rho_{ref}}}$, we get in scaled form
+\begin{equation}
+     \frac{d}{d\hat{t}}\hat{\rho}_s +  \hat{\rho}_s \nabla_{\hat{\mathbf{x}}} \cdot \hat{\mathbf{v}} + \nabla_{\hat{\mathbf{x}}} \cdot (\rho_s \hat{\mathbf{V}}_s) = 0,\quad s=1,\ldots,N_s
+ \end{equation}
+ 
+ \begin{equation}
+     \hat{\rho} \frac{d}{d\hat{t}}\hat{\mathbf{v}} + \nabla_{\hat{\mathbf{x}}} \cdot \hat{\mathbf{P}} = 0,
+ \end{equation}
+ 
+ \begin{equation}
+     \hat{\rho} \frac{d}{d\hat{t}}\hat{\mathbf{U}} + \nabla_{\hat{\mathbf{x}}} \cdot \hat{\mathbf{q}} +  \hat{\mathbf{P}} : \nabla_{\hat{\mathbf{x}}} \hat{\mathbf{v}} = 0,
+ \end{equation}
+ \begin{equation}
+      \frac{d}{dt} \hat{\rho} \hat{\mathbf{e}}^v_s + \nabla_{\hat{\mathbf{x}}} \cdot \hat{\mathbf{q}}^v_s = \hat{e_s} \nabla \cdot (\rho_s \mathbf{V}_s).
+ \end{equation}
+
+
+\subsection{Pressure tensor scaling}
+For the pressure tensor we have the generic expression
+\begin{equation}
+     \mathbf{P} = p \mathbf{I} - 2\mu \mathbf{S} - \zeta \cdot \nabla \mathbf{v} \mathbf{I}.
+\end{equation}
+
+We write in scaled form
+\begin{equation}
+     \hat{\mathbf{P}} = \frac{1}{p_{ref}}{\mathbf{P}} = \hat{\mathbf{P}} = \hat{p} \mathbf{I} - 2\hat{\mu} \hat{\mathbf{S}} - \hat{\zeta} \cdot \nabla_{\hat{\mathbf{x}}} \hat{\mathbf{v}} \mathbf{I}.
+\end{equation}
+
+For a consistent scaling we thus need
+\begin{equation}
+     \mu_{ref} = p_{ref} \frac{L_{ref}}{v_{ref}} = p_{ref} t_{ref},
+\end{equation}
+
+\begin{equation}
+     \zeta_{ref} = p_{ref} \frac{L_{ref}}{v_{ref}} = p_{ref} t_{ref}.
+\end{equation}
 
 \section{Production terms}
 
