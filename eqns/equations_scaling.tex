@@ -119,10 +119,10 @@ Let us consider the (multi-temperature) Navier--Stokes equations in general form
 \end{equation}
 
 \begin{equation}
-     \rho \frac{d}{dt}\mathbf{U} + \nabla \cdot \mathbf{q} + \mathbf{P} : \nabla \mathbf{v} = 0,
+     \rho \frac{d}{dt}{U} + \nabla \cdot \mathbf{q} + \mathbf{P} : \nabla \mathbf{v} = 0,
 \end{equation}
 \begin{equation}
-     \rho \frac{d}{dt}\mathbf{e^v_s} + \nabla \cdot \mathbf{q^v_s} = e^v_s \nabla \cdot (\rho_s \mathbf{V}_s).
+     \rho \frac{d}{dt}{e^v_s} + \nabla \cdot \mathbf{q^v_s} = e^v_s \nabla \cdot (\rho_s \mathbf{V}_s).
 \end{equation}
 
 With scaling:
@@ -135,10 +135,10 @@ With scaling:
 \end{equation}
 
 \begin{equation}
-     \frac{p_{ref}}{t_{ref}} \hat{\rho} \frac{d}{d\hat{t}}\hat{\mathbf{U}} + \frac{q_{ref}}{L_{ref}} \nabla_{\hat{\mathbf{x}}} \cdot \hat{\mathbf{q}} + \frac{p_{ref}v_{ref}}{L_{ref}} \hat{\mathbf{P}} : \nabla_{\hat{\mathbf{x}}} \hat{\mathbf{v}} = 0,
+     \frac{p_{ref}}{t_{ref}} \hat{\rho} \frac{d}{d\hat{t}}\hat{{U}} + \frac{q_{ref}}{L_{ref}} \nabla_{\hat{\mathbf{x}}} \cdot \hat{\mathbf{q}} + \frac{p_{ref}v_{ref}}{L_{ref}} \hat{\mathbf{P}} : \nabla_{\hat{\mathbf{x}}} \hat{\mathbf{v}} = 0,
 \end{equation}
 \begin{equation}
-     \frac{p_{ref}}{t_{ref}} \frac{d}{dt} \hat{\rho} \hat{\mathbf{e}}^v_s + \frac{q_{ref}}{L_{ref}} \nabla_{\hat{\mathbf{x}}} \cdot \hat{\mathbf{q}}^v_s = p_{ref}v_{ref}\hat{e_s} \nabla \cdot (\rho_s \mathbf{V}_s).
+     \frac{p_{ref}}{t_{ref}} \frac{d}{dt} \hat{\rho} \hat{{e}}^v_s + \frac{q_{ref}}{L_{ref}} \nabla_{\hat{\mathbf{x}}} \cdot \hat{\mathbf{q}}^v_s = p_{ref}v_{ref}\hat{e}_s \nabla \cdot (\rho_s \mathbf{V}_s).
 \end{equation}
 
 So $q_{ref} = p_{ref}v_{ref}$. Since $v_{ref} = \sqrt{\frac{p_{ref}}{\rho_{ref}}}$, we get in scaled form
@@ -151,10 +151,10 @@ So $q_{ref} = p_{ref}v_{ref}$. Since $v_{ref} = \sqrt{\frac{p_{ref}}{\rho_{ref}}
  \end{equation}
  
  \begin{equation}
-     \hat{\rho} \frac{d}{d\hat{t}}\hat{\mathbf{U}} + \nabla_{\hat{\mathbf{x}}} \cdot \hat{\mathbf{q}} +  \hat{\mathbf{P}} : \nabla_{\hat{\mathbf{x}}} \hat{\mathbf{v}} = 0,
+     \hat{\rho} \frac{d}{d\hat{t}}\hat{{U}} + \nabla_{\hat{\mathbf{x}}} \cdot \hat{\mathbf{q}} +  \hat{\mathbf{P}} : \nabla_{\hat{\mathbf{x}}} \hat{\mathbf{v}} = 0,
  \end{equation}
  \begin{equation}
-      \frac{d}{dt} \hat{\rho} \hat{\mathbf{e}}^v_s + \nabla_{\hat{\mathbf{x}}} \cdot \hat{\mathbf{q}}^v_s = \hat{e_s} \nabla \cdot (\rho_s \mathbf{V}_s).
+      \frac{d}{dt} \hat{\rho} \hat{{e}}^v_s + \nabla_{\hat{\mathbf{x}}} \cdot \hat{\mathbf{q}}^v_s = \hat{e}_s \nabla_{\hat{\mathbf{x}}} \cdot (\hat{\rho}_s \hat{\mathbf{V}}_s).
  \end{equation}
 
 
@@ -178,6 +178,96 @@ For a consistent scaling we thus need
      \zeta_{ref} = p_{ref} \frac{L_{ref}}{v_{ref}} = p_{ref} t_{ref}.
 \end{equation}
 
+\subsection{Diffusion velocity scaling}
+For the diffusion velocity the generic expression is
+\begin{equation}
+     \mathbf{V}_s = -\sum_{p} D_{sp}\mathbf{d}_{sp} - D_{T,s} \nabla \ln T - \sum_{p} D^{p}_{T^v,s} \nabla \ln T^v_p.
+\end{equation}
+We re-write without the logarithms:
+\begin{equation}
+     \mathbf{V}_s = -\sum_{p} D_{sp}\mathbf{d}_{sp} - D_{T,s} \frac{\nabla T}{T} - \sum_{p} D^{p}_{T^v,s} \frac{\nabla T^v_p}{T^v_p}.
+\end{equation}
+
+We have for the diffusive driving forces $\mathbf{d}_{sp}$:
+\begin{equation}
+     \mathbf{d}_{sp} = \nabla \left(\frac{n_s}{n}\right) +  \left(\frac{n_s}{n} - \frac{\rho_s}{\rho}\right) \nabla \ln p.
+\end{equation}
+We re-write them in terms of the gradients of the primitive variables:
+\begin{equation}
+     \mathbf{d}_{sp} = \frac{(n / m_s) \nabla \rho_s - n_s \nabla n}{n^2} + \left(\frac{n_s}{n} - \frac{\rho_s}{\rho}\right) \frac{nk \nabla T + kT \nabla n}{p},
+\end{equation}
+where
+\begin{equation}
+     \nabla n = \sum_p \frac{1}{m_p} \nabla \rho_p.
+\end{equation}
+We have a scaling for the diffusive driving forces: $d_{ref} = 1 / L_{ref}$.
+
+We write in scaled form
+\begin{equation}
+     \hat{\mathbf{V}}_s = \frac{1}{v_{ref}}\mathbf{V}_s = -\sum_{p} \hat{D}_{sp}\hat{\mathbf{d}}_{sp} - \hat{D}_{T,s} \frac{\nabla_{\hat{\mathbf{x}}} \hat{T}}{\hat{T}} - \sum_{p} \hat{D}^{p}_{T^v,s} \frac{\nabla_{\hat{\mathbf{x}}} \hat{T}^v_p}{\hat{T}^v_p}.
+\end{equation}
+So for a consistent scaling we need a reference diffusion coefficient
+\begin{equation}
+     D_{ref} = L_{ref} v_{ref},
+     % D_sp / D_ref * d_sp / d_sp_ref = Vhat / V_ref, d_sp_ref = 1 / Lref
+     % D_ref * d_sp_ref = V_ref, D_ref = d_sp_ref * V_ref = Lref * v_ref
+\end{equation}
+and the scaled diffusive driving forces are given by
+\begin{equation}
+     \hat{\mathbf{d}}_{sp} = \frac{(\hat{n} / \hat{m}_s) \nabla_{\hat{\mathbf{x}}} \hat{\rho}_s - \hat{n}_s \nabla_{\hat{\mathbf{x}}} \hat{n}}{\hat{n}^2} + \left(\frac{\hat{n}_s}{\hat{n}} - \frac{\hat{\rho}_s}{\hat{\rho}}\right) \frac{\hat{n} \nabla_{\hat{\mathbf{x}}} \hat{T} + \hat{T} \nabla_{\hat{\mathbf{x}}} \hat{n}}{\hat{p}}.
+\end{equation}
+According to (3.84) of [Nagnibeda, Kustova, 2009], we also have that
+\begin{equation}
+     \hat{D}^{p}_{T^v,s} = 0.
+\end{equation}
+This means the gradient of the vibrational temperature has no impact on the diffusion velocity.
+
+\subsection{Heat flux scaling}
+For the heat flux the generic expression (but already using the simplifications according to (3.85) of [Nagnibeda, Kustova, 2009]) is % (3.84), (3.85)
+\begin{equation}
+     \mathbf{q} = -\left(\lambda' + \sum_s\lambda^{vt}_s\right) \nabla T - \sum_{s}\left(\lambda^{tv}_s + \lambda^{vv}_{ss}\right)\nabla T^v_s
+     - p \sum_s {D}_{T,s} \mathbf{d}_s + \sum_s \rho_s h_s \mathbf{V}_s.
+\end{equation}
+Here $h_s$ = $e_s + \frac{kT}{m_s}$.
+We introduce for brevity
+\begin{equation}
+     \lambda_T = \lambda' + \sum_s\lambda^{vt}_s,
+\end{equation}
+\begin{equation}
+     \lambda_{T^v_s} = \lambda^{tv}_s + \lambda^{vv}_s.
+\end{equation}
+
+We write in scaled form
+\begin{equation}
+     \hat{\mathbf{q}} = \frac{1}{p_{ref}v_{ref}}{\mathbf{q}} = -\hat{\lambda}_T \nabla_{\hat{\mathbf{x}}} \hat{T} - \sum_{s}\hat{\lambda}_{T^v_s}\nabla_{\hat{\mathbf{x}}} \hat{T}^v_s
+     - \hat{p} \sum_s \hat{D}_{T,s} \hat{\mathbf{d}}_s + \sum_s \hat{\rho}_s \hat{h}_s \hat{\mathbf{V}}_s.
+\end{equation}
+From this we get that $\lambda_{ref} = \frac{p_{ref}}{T_{ref}}v_{ref}L_{ref}$.
+
+For the vibrational energy flux:
+\begin{equation}
+     \mathbf{q^v_s} = -\lambda^{vt}_s \nabla T - \lambda^{vv}_{ss} \nabla T^v_s.
+\end{equation}
+So the scaling is exactly the same:
+\begin{equation}
+     \hat{\mathbf{q}}^v_s = -\hat{\lambda}^{vt}_s \nabla_{\hat{\mathbf{x}}} \hat{T} - \lambda^{vv}_{ss} \nabla_{\hat{\mathbf{x}}} \hat{T}^v_s,
+\end{equation}
+with $\lambda_{ref} = \frac{p_{ref}}{T_{ref}}v_{ref}L_{ref}$.
+
+
+\subsection{Summary}
+\begin{align}
+     \mu_{ref} = p_{ref} t_{ref}, \\
+     \zeta_{ref} = p_{ref} t_{ref},\\
+     D_{ref} = L_{ref} v_{ref},\\
+     \lambda_{ref} = \frac{p_{ref}}{T_{ref}}v_{ref}L_{ref}.
+\end{align}
+
+Additionally,
+\begin{align}
+     q_{ref} = p_{ref}v_{ref},\\
+     d_{ref} = 1 / L_{ref}.
+\end{align}
 \section{Production terms}
 
 
