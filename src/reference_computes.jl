@@ -46,18 +46,18 @@ function T_v_rho_L(T_ref, v_ref, rho_ref, L_ref)
 end
 
 Base.Dict(rfq::ReferenceFlowQuantities) = Dict(
-    "p_ref" => rfq.p_ref,
-    "T_ref" => rfq.T_ref,
-    "rho_ref" => rfq.rho_ref,
-    "v_ref" => rfq.v_ref,
-    "n_ref" => rfq.n_ref,
-    "m_ref" => rfq.m_ref,
-    "e_ref" => rfq.e_ref,
-    "c_v_ref" => rfq.c_v_ref,
-    "R_specific_ref" => rfq.R_specific_ref,
-    "t_ref" => rfq.t_ref,
-    "μ_ref" => rfq.μ_ref,
-    "λ_ref" => rfq.λ_ref,
-    "Diff_ref" => rfq.Diff_ref,
-    "Reynolds_ref" => rfq.Reynolds_ref
+    "Reference pressure" => rfq.p_ref,
+    "Reference temperature" => rfq.T_ref,
+    "Reference density" => rfq.rho_ref,
+    "Reference velocity" => rfq.v_ref,
+    "Reference number density" => rfq.n_ref,
+    "Reference mass" => rfq.m_ref,
+    "Reference energy per unit mass" => rfq.e_ref,
+    "Reference specific heat" => rfq.c_v_ref,
+    "Reference specific gas constant" => rfq.R_specific_ref,
+    "Reference time" => rfq.t_ref,
+    "Reference viscosity" => rfq.μ_ref,
+    "Reference thermal conductivity" => rfq.λ_ref,
+    "Reference diffusion coefficient" => rfq.Diff_ref,
+    "Reference Reynolds number" => rfq.Reynolds_ref
 )
