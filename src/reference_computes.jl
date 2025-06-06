@@ -1,5 +1,22 @@
 const k_B = 1.380649e-23
 
+struct ReferenceFlowQuantities
+    p_ref::Float64
+    T_ref::Float64
+    rho_ref::Float64
+    v_ref::Float64
+    n_ref::Float64
+    m_ref::Float64
+    e_ref::Float64
+    c_v_ref::Float64
+    R_specific_ref::Float64
+    t_ref::Float64
+    μ_ref::Float64
+    λ_ref::Float64
+    Diff_ref::Float64
+    Reynolds_ref::Float64
+end
+
 function get_v_ref(p_ref, rho_ref)
     return sqrt(p_ref/rho_ref)
 end
@@ -10,20 +27,12 @@ function p_T_rho_L(p_ref, T_ref, rho_ref, L_ref)
     v_ref = get_v_ref(p_ref, rho_ref)
     t_ref = L_ref / v_ref
     μ_ref = p_ref * t_ref
+    λ_ref = (p_ref / T_ref) * v_ref * L_ref
+    Diff_ref = v_ref * L_ref
 
-    return Dict("p_ref" => p_ref,
-                "T_ref" => T_ref,
-                "rho_ref" => rho_ref,
-                "v_ref" => v_ref,
-                "n_ref" => n_ref,
-                "m_ref" => m_ref,
-                "e_ref" => k_B * T_ref / m_ref,
-                "cv_ref" => k_B / m_ref,
-                "R_specific_ref" => k_B / m_ref,
-                "t_ref" => t_ref,
-                "μ_ref" => μ_ref,
-                "Reynolds_ref" => rho_ref * v_ref * L_ref / μ_ref
-                )
+    return ReferenceFlowQuantities(p_ref, T_ref, rho_ref, v_ref, n_ref, m_ref,
+                                   k_B * T_ref / m_ref, k_B / m_ref, k_B / m_ref,
+                                   t_ref, μ_ref, λ_ref, Diff_ref, rho_ref * v_ref * L_ref / μ_ref)
 end
 
 function p_m_rho_L(p_ref, m_ref, rho_ref, L_ref)
@@ -35,3 +44,20 @@ function T_v_rho_L(T_ref, v_ref, rho_ref, L_ref)
     p_ref = rho_ref * v_ref^2
     return p_T_rho_L(p_ref, T_ref, rho_ref, L_ref)
 end
+
+Base.Dict(rfq::ReferenceFlowQuantities) = Dict(
+    "p_ref" => rfq.p_ref,
+    "T_ref" => rfq.T_ref,
+    "rho_ref" => rfq.rho_ref,
+    "v_ref" => rfq.v_ref,
+    "n_ref" => rfq.n_ref,
+    "m_ref" => rfq.m_ref,
+    "e_ref" => rfq.e_ref,
+    "c_v_ref" => rfq.c_v_ref,
+    "R_specific_ref" => rfq.R_specific_ref,
+    "t_ref" => rfq.t_ref,
+    "μ_ref" => rfq.μ_ref,
+    "λ_ref" => rfq.λ_ref,
+    "Diff_ref" => rfq.Diff_ref,
+    "Reynolds_ref" => rfq.Reynolds_ref
+)
