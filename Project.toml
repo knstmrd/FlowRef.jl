@@ -2,3 +2,6 @@ name = "FlowRef"
 uuid = "e2f09e9e-4b11-4a24-9e3f-a1cd38a03ba0"
 authors = ["Georgii Oblapenko <oblapenko@acom.rwth-aachen.de>"]
 version = "0.2.0"
+
+[compat]
+julia = "1.8"
